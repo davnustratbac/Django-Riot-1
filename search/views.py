@@ -1,10 +1,10 @@
 from django.shortcuts import render
+import requests
 
-# Create your views here.
 
 def home(request):
-    return render(request, 'templates/home.html')
+    return render(request, 'home.html')
 
 
 def search(request):
-    return render(request, 'templates/search.html')
+    return render(request, 'search.html')
