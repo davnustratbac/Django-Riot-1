@@ -1,26 +1,51 @@
+/**
+* Search Tag
+*/
 <search>
-  <h2>{ opts.content }</h2>
-  <p>Find code monkeys from GitHub</p>
+  <h1>{ opts.content }</h1>
+  <p class="lead">Find code monkeys from GitHub</p>
 
-  <form onsubmit={ findDevelopers }>
-    <input type="text" name="location">
-    <button type="submit">Search</button>
+  <form class="form-inline" onsubmit={ findDevelopers }>
+    <div class="form-group">
+      <input type="text" class="form-control" name="location">  
+    </div>
+
+    <button class="btn btn-default" type="submit">Search</button>
   </form>
 
-  <ul>
-    <li each={ items }></li>
-  </ul>
+  <list items={ items }></list>
 
-  findDevelopers(event) {
+  var self = this;
+
+  this.findDevelopers = function(event) {
     var request = $.get('https://api.github.com/search/users?q=location:' + this.location.value);
     request.success(function(data) {
-      this.items = data.items
-      console.log(this.items);
+      self.items = data.items;
+      self.update();
     });
     request.error(function(info) {
       console.log(info);
     });
   }
 
+  this.on('mount', function() {
+    console.log('mount');
+  });
 
+  this.on('update', function() {
+    console.log('update');
+  });
 </search>
+
+
+
+/**
+* List Tag
+*/
+<list>
+  <ul>
+    <li each={ opts.items }>
+      <a href={ html_url }>{ login }</a>
+    </li>
+  </ul>
+</list>
