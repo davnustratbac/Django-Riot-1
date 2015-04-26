@@ -1,0 +1,14 @@
+{% extends 'templates/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+	<search></search>
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script src="{% static 'search/js/tags.js' %}" type="riot/tag"></script>
+	<script src="{% static 'search/js/search.js' %}"></script>
+{% endblock %}
