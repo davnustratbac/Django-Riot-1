@@ -3,6 +3,7 @@
 */
 
 riot.mount('search', {content: 'GitFind'});
+riot.mount('list');
 
 
 console.log('search tags loaded');

@@ -18,7 +18,7 @@
   var self = this;
 
   this.findDevelopers = function(event) {
-    var request = $.get('https://api.github.com/search/users?q=location:' + this.location.value);
+    var request = axios.get('https://api.github.com/search/users?q=location:' + this.location.value);
     request.success(function(data) {
       self.items = data.items;
       self.update();
@@ -32,7 +32,7 @@
     console.log('mount');
   });
 
-  this.on('update', function() {
+  this.on('update', function(data) {
     console.log('update');
   });
 </search>
